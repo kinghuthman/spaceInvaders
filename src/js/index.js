@@ -78,6 +78,12 @@ const drawEnemies = () => {
     }
 }
 
+const moveEnemies = () => {
+    for (let i = 0; i < enemies.length; i++){
+        enemies[i].top += 2;
+    }
+}
+
 const gameLoop = () => {
     console.log("gameloop")
     setTimeout(gameLoop , 100)
@@ -85,6 +91,7 @@ const gameLoop = () => {
     // redraw the location of the missiles
     drawMissiles()
     drawEnemies()
+    moveEnemies()
     
 }
 gameLoop()
