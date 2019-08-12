@@ -1,10 +1,10 @@
 // hero
-var hero = {
+const hero = {
     top: 700,
     left: 550
 }
 // stores the position of the missile starting from where the hero is, using an object
-var missiles = []
+let missiles = []
 // move hero
 document.onkeydown = function(e) {
     if (e.keyCode === 37) {
@@ -36,10 +36,27 @@ const moveHero = (args) => {
     }
 }
 const drawMissiles = () => {
-    document.getElementById('missiles').innerHTML = "";
+    document.querySelector('#missiles').innerHTML = "";
     // loops through array of fired missiles
-    for (var missile = 0; missile < missiles.length; missile = missile + 1){
+    for (let missile = 0; missile < missiles.length; missile = missile + 1){
         /* for every missile, a missile element will be added to the missles element with the position based off of where the hero was */ 
-        document.getElementById('missiles').innerHTML += `<div class='missile' style='left:${missiles[missile].left}px; top:${missiles[missile].top}px;'></div>`;  
+        document.querySelector('#missiles').innerHTML += `<div class='missile' style='left:${missiles[missile].left}px; top:${missiles[missile].top}px;'></div>`;  
     }
 }
+
+const moveMissiles = () => {
+    for (let i = 0; i < missiles.length; i++){
+        missiles[i].top -= 5;
+    }
+}
+
+const gameLoop = () => {
+    console.log("gameloop")
+    setTimeout(gameLoop , 100)
+    moveMissiles();
+    // redraw the location of the missiles
+    drawMissiles()
+    
+    
+}
+gameLoop()
