@@ -27,12 +27,12 @@ let enemies = [
 // move hero
 document.onkeydown = function(e) {
     if (e.keyCode === 37) {
-        console.log('left')
+        
         // want to move it from wherever it is
         hero.left = hero.left - 10;
         moveHero('left')
     } else if (e.keyCode === 39) {
-        console.log('right')
+        
         hero.left = hero.left + 10;
         moveHero('right')
     } else if (e.keyCode === 32) {
@@ -51,7 +51,7 @@ const moveHero = (args) => {
         document.getElementById('hero').style.left = hero.left + 'px';
     } else if (args === 'right') {
         document.getElementById('hero').style.left = hero.left + 'px';
-        console.log(args)
+        
     }
 }
 const drawMissiles = () => {
@@ -84,14 +84,40 @@ const moveEnemies = () => {
     }
 }
 
+const collisionDetection = () => {
+    // 
+    for (let enemy = 0; enemy < enemies.length; enemy++){
+       for (let missile = 0; missile < missiles.length; missile++){
+        // top of the enemy plus its height to see if the missile has breached the enemy
+        if ((missiles[missile].top <= enemies[enemy].top + 50) && (missiles[missile].top > enemies[enemy].top) &&
+        (missiles[missile].left >= enemies[enemy].left) &&
+        (missiles[missile].left <= enemies[enemy].left + 50)
+        ){
+            enemies.splice(enemy, 1)
+            missiles.splice(missiles, 1)
+            console.log("move bitch")
+        } 
+        
+       }
+    }
+}
+
 const gameLoop = () => {
-    console.log("gameloop")
-    setTimeout(gameLoop , 100)
+    
+    setTimeout(gameLoop , 50)
     moveMissiles();
     // redraw the location of the missiles
-    drawMissiles()
-    drawEnemies()
-    moveEnemies()
+    drawMissiles();
+    moveEnemies();
+    drawEnemies();
+    collisionDetection();
     
 }
+
+// move hero up and down
+// move enemies left right as they move down
+// keep score
+// use different missiles
+// enemies hitpoints
+
 gameLoop()
