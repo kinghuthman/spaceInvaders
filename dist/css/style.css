@@ -21,3 +21,17 @@
   top: 100px;
   left: 550px;
 }
+
+#missles {
+  height: 800px;
+  width: 1200px;
+  position: absolute;
+}
+
+.missile {
+  background-image: url('assets/missile1.png');
+  height: 16px;
+  width: 10px;
+  position: absolute;
+}
+
