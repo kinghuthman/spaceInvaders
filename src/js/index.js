@@ -4,7 +4,26 @@ const hero = {
     left: 550
 }
 // stores the position of the missile starting from where the hero is, using an object
-let missiles = []
+let missiles = [];
+
+let enemies = [
+    { top: 100, left: 200},
+    { top: 100, left: 300},
+    { top: 100, left: 400},
+    { top: 100, left: 500},
+    { top: 100, left: 600},
+    { top: 100, left: 700},
+    { top: 100, left: 800},
+    { top: 100, left: 900},
+    { top: 175, left: 200},
+    { top: 175, left: 300},
+    { top: 175, left: 400},
+    { top: 175, left: 500},
+    { top: 175, left: 600},
+    { top: 175, left: 700},
+    { top: 175, left: 800},
+    { top: 175, left: 900}
+];
 // move hero
 document.onkeydown = function(e) {
     if (e.keyCode === 37) {
@@ -50,13 +69,22 @@ const moveMissiles = () => {
     }
 }
 
+const drawEnemies = () => {
+    document.querySelector('#enemies').innerHTML = "";
+    // loops through array of fired missiles
+    for (let enemy = 0; enemy < enemies.length; enemy++){
+        /* for every missile, a missile element will be added to the missles element with the position based off of where the hero was */ 
+        document.querySelector('#enemies').innerHTML += `<div class='enemy' style='left:${enemies[enemy].left}px; top:${enemies[enemy].top}px;'></div>`;  
+    }
+}
+
 const gameLoop = () => {
     console.log("gameloop")
     setTimeout(gameLoop , 100)
     moveMissiles();
     // redraw the location of the missiles
     drawMissiles()
-    
+    drawEnemies()
     
 }
 gameLoop()

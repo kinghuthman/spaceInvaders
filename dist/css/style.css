@@ -18,11 +18,15 @@
   height: 50px;
   width: 50px;
   position: absolute;
-  top: 100px;
-  left: 550px;
 }
 
 #missles {
+  height: 800px;
+  width: 1200px;
+  position: absolute;
+}
+
+#enemies {
   height: 800px;
   width: 1200px;
   position: absolute;
